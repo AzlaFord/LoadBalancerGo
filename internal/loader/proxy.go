@@ -2,7 +2,9 @@ package loader
 
 import (
 	"fmt"
+	"io"
 	"net/http"
+	"time"
 )
 
 func ProxyHandler(w http.ResponseWriter, r *http.Request) {
@@ -13,5 +15,15 @@ func ProxyHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	req.Header = r.Header
-
+	client := &http.Client{
+		Timeout: 5 * time.Second,
+	}
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	body, _ := io.ReadAll(resp.Body)
+	w.WriteHeader(resp.StatusCode)
+	w.Write(body)
 }

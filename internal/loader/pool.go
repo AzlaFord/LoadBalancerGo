@@ -1,8 +1,6 @@
 package loader
 
-import (
-	"loadBal/internal/server"
-)
+import "loadBal/internal/server"
 
 type Backend struct {
 	Id    int
