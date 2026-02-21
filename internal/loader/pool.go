@@ -28,6 +28,9 @@ func SelectBackEnd() Backend {
 			AliveBackends = append(AliveBackends, data)
 		}
 	}
+	if len(AliveBackends) == 0 {
+		return Backend{}
+	}
 	backend := AliveBackends[currentIndex%len(AliveBackends)]
 	currentIndex++
 	return backend
