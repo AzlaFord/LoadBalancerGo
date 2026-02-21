@@ -8,6 +8,7 @@ import (
 
 func main() {
 	loader.AddBackEnd()
+	go loader.HealthCheck()
 	Server_data := server.Servers
 	http.HandleFunc("/api", loader.ProxyHandler)
 	for _, data := range Server_data {
