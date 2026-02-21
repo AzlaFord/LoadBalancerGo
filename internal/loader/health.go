@@ -8,7 +8,7 @@ import (
 func HealthCheck() {
 	for {
 		for i, b := range Backends {
-			resp, err := http.Get(b.Url)
+			resp, err := http.Get(b.Url + "/health")
 			if err != nil || resp.StatusCode != 200 {
 				Backends[i].Alive = false
 			} else {

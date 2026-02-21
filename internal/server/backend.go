@@ -24,6 +24,7 @@ func Server(id int, port string) {
 		io.WriteString(w, "hello from healthHandler #"+port+"\n")
 	})
 	server.HandleFunc("/api", func(w http.ResponseWriter, r *http.Request) {
+		// time.Sleep(3 * time.Second) test
 		io.WriteString(w, "Hello from apiHandler #"+port+"\n")
 	})
 
